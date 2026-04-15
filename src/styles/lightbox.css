@@ -1,0 +1,193 @@
+/* ============================================
+   LIGHTBOX STYLES
+   ============================================ */
+
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-lightbox);
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 200ms ease-out;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: none;
+}
+
+.lightbox-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.lightbox-image {
+  max-width: 95vw;
+  max-height: 90vh;
+  max-height: 90dvh;
+  object-fit: contain;
+  animation: fadeInScale 300ms ease-out;
+  touch-action: pinch-zoom;
+  will-change: transform;
+  transition: opacity 200ms ease;
+}
+
+.lightbox-image.transitioning {
+  opacity: 0.3;
+  transition: opacity 100ms ease;
+}
+
+/* Controls */
+.lightbox-controls {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-md) var(--space-lg);
+  z-index: calc(var(--z-lightbox) + 1);
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 100%);
+}
+
+.lightbox-counter {
+  font-size: var(--font-sm);
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.lightbox-actions {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.lightbox-btn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: white;
+  font-size: 1.2rem;
+  transition: all var(--transition-fast);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.lightbox-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.lightbox-btn:active {
+  transform: scale(0.9);
+}
+
+/* Navigation arrows */
+.lightbox-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: calc(var(--z-lightbox) + 1);
+}
+
+.lightbox-nav-prev {
+  left: var(--space-md);
+}
+
+.lightbox-nav-next {
+  right: var(--space-md);
+}
+
+.lightbox-nav-btn {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: white;
+  font-size: 1.5rem;
+  transition: all var(--transition-fast);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.lightbox-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.1);
+}
+
+/* Bottom info bar */
+.lightbox-info {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-lg);
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
+  z-index: calc(var(--z-lightbox) + 1);
+}
+
+.lightbox-title {
+  font-size: var(--font-md);
+  font-weight: 500;
+  color: white;
+}
+
+.lightbox-album-tag {
+  display: inline-block;
+  font-size: var(--font-xs);
+  color: var(--accent);
+  background: var(--accent-muted);
+  padding: 2px var(--space-sm);
+  border-radius: var(--radius-full);
+  margin-top: var(--space-xs);
+}
+
+/* Mobile-specific — hide arrows on mobile, use swipe instead */
+@media (max-width: 768px) {
+  .lightbox-nav {
+    display: none;
+  }
+
+  .lightbox-image {
+    max-width: 100vw;
+    max-height: 85vh;
+    max-height: 85dvh;
+  }
+
+  .lightbox-controls {
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .lightbox-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}
+
+/* Swipe hint animation on mobile */
+.lightbox-swipe-hint {
+  position: fixed;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--font-xs);
+  color: rgba(255, 255, 255, 0.4);
+  z-index: calc(var(--z-lightbox) + 1);
+  animation: fadeIn var(--transition-slow) ease-out 1s both;
+  pointer-events: none;
+}

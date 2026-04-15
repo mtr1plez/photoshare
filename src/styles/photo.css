@@ -1,0 +1,235 @@
+/* ============================================
+   PHOTO PAGE — Single photo view for QR codes
+   ============================================ */
+
+.photo-page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.photo-page-bg {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, var(--bg-secondary) 0%, var(--bg-primary) 70%);
+  z-index: 0;
+}
+
+.photo-page-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  max-width: 1000px;
+  width: 100%;
+  animation: fadeInUp var(--transition-slow) ease-out;
+}
+
+.photo-page-image-wrap {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  background: var(--bg-tertiary);
+  max-height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-page-image-wrap img {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  display: block;
+  transition: opacity 0.5s ease;
+}
+
+.photo-page-image-wrap img.loading {
+  opacity: 0;
+}
+
+.photo-page-image-wrap img.loaded {
+  opacity: 1;
+}
+
+.photo-page-skeleton {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--bg-tertiary) 25%, var(--bg-elevated) 50%, var(--bg-tertiary) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite ease-in-out;
+  min-height: 300px;
+  min-width: 300px;
+}
+
+.photo-page-info {
+  text-align: center;
+  animation: fadeIn var(--transition-slow) ease-out 0.2s both;
+}
+
+.photo-page-title {
+  font-size: var(--font-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+  letter-spacing: -0.01em;
+}
+
+.photo-page-actions {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeIn var(--transition-slow) ease-out 0.3s both;
+}
+
+.photo-page-actions .btn {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Branding footer */
+.photo-page-brand {
+  position: fixed;
+  bottom: var(--space-lg);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--text-muted);
+  font-size: var(--font-xs);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.photo-page-brand:hover {
+  color: var(--text-tertiary);
+}
+
+.photo-page-brand-icon {
+  color: var(--accent);
+  font-size: 0.9rem;
+}
+
+/* Error states */
+.photo-page-error {
+  text-align: center;
+  animation: fadeInUp var(--transition-slow) ease-out;
+}
+
+.photo-page-error-icon {
+  font-size: 4rem;
+  margin-bottom: var(--space-lg);
+  opacity: 0.4;
+}
+
+.photo-page-error h2 {
+  font-size: var(--font-xl);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-sm);
+}
+
+.photo-page-error p {
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-xl);
+}
+
+/* Loading state */
+.photo-page-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  animation: fadeIn var(--transition-slow) ease-out;
+}
+
+.photo-page-loading p {
+  color: var(--text-tertiary);
+  font-size: var(--font-sm);
+}
+
+@media (max-width: 768px) {
+  .photo-page {
+    padding: var(--space-md);
+  }
+
+  .photo-page-title {
+    font-size: var(--font-lg);
+  }
+
+  .photo-page-image-wrap {
+    max-height: 60vh;
+    border-radius: var(--radius-md);
+  }
+
+  .photo-page-image-wrap img {
+    max-height: 60vh;
+  }
+}
+
+/* Navigation arrows */
+.photo-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 100%;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity var(--transition-fast);
+}
+
+.photo-nav:hover {
+  opacity: 1;
+}
+
+.photo-nav-prev {
+  left: 0;
+}
+
+.photo-nav-next {
+  right: 0;
+}
+
+.photo-nav-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background: rgba(10, 10, 10, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  line-height: 1;
+  padding-bottom: 4px; /* visual center for arrows */
+  transition: transform var(--transition-fast), background var(--transition-fast);
+}
+
+.photo-nav:hover .photo-nav-btn {
+  background: rgba(10, 10, 10, 0.8);
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .photo-nav {
+    display: none; /* Hide on mobile since they can swipe */
+  }
+}

@@ -1,0 +1,160 @@
+/* ============================================
+   AUTH / LOGIN STYLES
+   ============================================ */
+
+.login-page {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: var(--space-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated background */
+.login-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.login-bg::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    ellipse at 30% 50%,
+    rgba(232, 213, 183, 0.06) 0%,
+    transparent 60%
+  ),
+  radial-gradient(
+    ellipse at 70% 30%,
+    rgba(232, 213, 183, 0.04) 0%,
+    transparent 50%
+  );
+  animation: loginBgPulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes loginBgPulse {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-2%, 2%) scale(1.05); }
+}
+
+/* Card */
+.login-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+  padding: var(--space-2xl);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  box-shadow: var(--shadow-lg);
+  animation: fadeInUp var(--transition-slow) ease-out;
+  text-align: center;
+}
+
+.login-logo {
+  font-size: var(--font-2xl);
+  margin-bottom: var(--space-sm);
+}
+
+.login-title {
+  font-size: var(--font-xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--text-primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--space-sm);
+}
+
+.login-subtitle {
+  color: var(--text-secondary);
+  font-size: var(--font-sm);
+  margin-bottom: var(--space-xl);
+  line-height: 1.6;
+}
+
+/* Google button */
+.google-btn {
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  background: white;
+  color: #333;
+  font-weight: 600;
+  font-size: var(--font-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.google-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.google-btn:active {
+  transform: translateY(0);
+}
+
+.google-btn svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.google-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Access denied state */
+.login-denied {
+  padding: var(--space-lg);
+  background: rgba(232, 85, 85, 0.1);
+  border: 1px solid rgba(232, 85, 85, 0.2);
+  border-radius: var(--radius-md);
+  margin-top: var(--space-lg);
+  animation: fadeIn var(--transition-normal) ease-out;
+}
+
+.login-denied p {
+  color: var(--danger);
+  font-size: var(--font-sm);
+  margin-bottom: var(--space-md);
+}
+
+.login-denied .btn {
+  width: 100%;
+}
+
+/* Back to gallery link */
+.login-back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--text-tertiary);
+  font-size: var(--font-sm);
+  margin-top: var(--space-xl);
+  transition: color var(--transition-fast);
+}
+
+.login-back:hover {
+  color: var(--text-secondary);
+}
